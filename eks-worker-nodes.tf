@@ -40,30 +40,13 @@ docker run -d -p 80:80 nginx
 USERDATA
 }
  
-resource "aws_launch_configuration" "tf_eks" {
-  associate_public_ip_address = true
-  iam_instance_profile        = "${aws_iam_instance_profile.node.name}"
-  image_id                    = "${data.aws_ami.eks-worker.id}"
-  instance_type               = "m4.large"
-  name_prefix                 = "terraform-eks"
-  security_groups             = ["${aws_security_group.tf-eks-node.id}"]
-  user_data_base64            = "${base64encode(local.tf-eks-node-userdata)}"
-  key_name                    = "${var.keypair-name}"
- 
-  lifecycle {
-    create_before_destroy = true
-  }
-}
 resource "aws_launch_configuration" "demo" {
   associate_public_ip_address = true
-  iam_instance_profile = aws_iam_instance_profile.demo-node.name
-  image_id = data.aws_ami.eks-worker.id
+    image_id = "ami-0620d12a9cf777c87"
   instance_type = "t2.micro"
   key_name = "home"
   name_prefix = "terraform-eks-demo"
-  security_groups = [aws_security_group.demo-node.id]
-  user_data_base64 = base64encode(local.demo-node-userdata)
-
+  
   lifecycle {
     create_before_destroy = true
   }
