@@ -52,6 +52,7 @@ pipeline {
 	      sh 'git clone https://github.com/sushmitabhandari/eks-1.git'
 	      //sh 'cd /var/lib/jenkins/workspace/eks/terraform-script-eks'
 	     // sh 'sudo ls -al'
+              sh 'sudo rm -rf .terraform'
 	      sh 'sudo terraform init'
 	      sh 'terraform fmt'
 	      sh 'terraform validate'
