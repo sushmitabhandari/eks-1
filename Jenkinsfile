@@ -14,8 +14,8 @@ pipeline {
         }
         stage('git clone') {
             steps {
-                sh 'sudo rm -rf /home/ec2-user/newfolder'
-                sh 'sudo rm -rf *;sudo git clone https://github.com/thippeswamy24/eks.git /home/ec2-user/newfolder'
+                sh 'sudo rm -rf /home/ubuntu/newfolder'
+                sh 'sudo rm -rf *;sudo git clone https://github.com/sushmitabhandari/eks-1.git /home/ec2-user/newfolder'
             }
         }
        // stage('tfsvars create') {
@@ -25,17 +25,17 @@ pipeline {
       //  }
         stage('terraform init') {
             steps {
-                sh 'sudo /home/ec2-user/terraform init /home/ec2-user/newfolder'
+                sh 'sudo /home/ubuntu/terraform init /home/ubuntu/newfolder'
             }
         }
         stage('terraform plan') {
             steps {
-                sh 'sudo ls /home/ec2-user/newfolder; sudo /home/ec2-user/terraform plan /home/ec2-user/newfolder'
+                sh 'sudo ls /home/ubuntu/newfolder; sudo /home/ubuntu/terraform plan /home/ubuntu/newfolder'
             }
         }
         stage('terraform apply') {
             steps {
-                sh 'sudo /home/ec2-user/terraform apply --auto-approve /home/ec2-user/newfolder'
+                sh 'sudo /home/ubuntu/terraform apply --auto-approve /home/ubuntu/newfolder'
             }
         }
         stage('terraform ended') {
