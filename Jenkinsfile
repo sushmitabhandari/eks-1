@@ -9,7 +9,7 @@ pipeline {
          stage('install terraform') {
             steps {
 		    sh 'sudo mkdir /home/ubuntu/newfolder'
-	          sh 'sudo cd /home/ubuntu/newfolder'
+	          sh 'cd /home/ubuntu/newfolder'
 	          sh 'sudo wget https://releases.hashicorp.com/terraform/0.12.23/terraform_0.12.23_linux_amd64.zip'
                   sh 'sudo apt-get install unzip -y'
 	          echo 'unzip installed'
