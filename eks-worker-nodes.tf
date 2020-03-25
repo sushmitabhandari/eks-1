@@ -23,6 +23,19 @@ resource "aws_iam_role" "demo-node" {
 POLICY
 }
 
+
+locals {
+  eks-nodes-userdata = <<USERDATA
+#!/bin/bash -xe
+sudo su
+apt-get update
+apt-get install docker.io -y
+service docker start
+docker pull nginx
+docker run -itd nginx -p 80:80 
+USERDATA
+}
+
 resource "aws_iam_role_policy_attachment" "demo-node-AmazonEKSWorkerNodePolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.demo-node.name
@@ -45,9 +58,9 @@ resource "aws_eks_node_group" "demo" {
   subnet_ids      = aws_subnet.demo[*].id
 
   scaling_config {
-    desired_size = 3
-    max_size     = 3
-    min_size     = 3
+    desired_size = 1
+    max_size     = 1
+    min_size     = 1
   }
 
   depends_on = [
