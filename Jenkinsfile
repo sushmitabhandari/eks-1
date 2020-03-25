@@ -8,11 +8,11 @@ pipeline {
     stages {
          stage('install terraform') {
             steps {
-			  sh 'cd /home/ubuntu/newfolder'
+	          sh 'sudo cd /home/ubuntu/newfolder'
 	          sh 'sudo wget https://releases.hashicorp.com/terraform/0.12.23/terraform_0.12.23_linux_amd64.zip'
-              sh 'sudo apt-get install unzip -y'
+                  sh 'sudo apt-get install unzip -y'
 	          echo 'unzip installed'
-              sh 'sudo unzip terraform_0.12.23_linux_amd64.zip'
+                  sh 'sudo unzip terraform_0.12.23_linux_amd64.zip'
 	          sh  'sudo cp ./terraform /usr/bin/terraform && export PATH=$PATH:/usr/bin'
 	          sh 'terraform --version'
 		      echo 'terraform done'  
