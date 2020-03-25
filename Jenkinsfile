@@ -53,10 +53,10 @@ pipeline {
 	      //sh 'cd /var/lib/jenkins/workspace/eks/terraform-script-eks'
 	     // sh 'sudo ls -al'
 	      sh 'sudo terraform init'
-	      sh 'cd /var/lib/jenkins/workspace/eks/terraform-eks && terraform fmt'
-	      sh 'cd /var/lib/jenkins/workspace/eks/terraform-eks && terraform validate'
-	      sh 'cd /var/lib/jenkins/workspace/eks/terraform-eks && terraform plan'
-	      sh 'cd /var/lib/jenkins/workspace/eks/terraform-eks && terraform apply'
+	      sh 'terraform fmt'
+	      sh 'terraform validate'
+	      sh 'terraform plan'
+	      sh 'terraform apply'
 		
 	    }
 	 }
