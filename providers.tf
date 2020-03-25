@@ -6,7 +6,6 @@ provider "aws" {
   region  = "ap-south-1"
   assume_role {
     role_arn     = "arn:aws:iam::686522566015:role/eks-ec2-role"
-  version = ">= 2.38.0"
 }
   }
 
