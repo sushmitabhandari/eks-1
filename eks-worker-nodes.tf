@@ -50,6 +50,17 @@ resource "aws_iam_role_policy_attachment" "demo-node-AmazonEC2ContainerRegistryR
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.demo-node.name
 }
+resource "aws_launch_configuration" "tf_eks" {
+  associate_public_ip_address = true
+   image_id                    = "ami-0620d12a9cf777c87"
+  instance_type               = "t2.micro"
+  name_prefix                 = "terraform-eks"
+  key_name                    = "home"
+ 
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 resource "aws_eks_node_group" "demo" {
   cluster_name    = aws_eks_cluster.demo.name
